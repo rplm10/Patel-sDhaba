@@ -6,7 +6,7 @@ function PurchasePage() {
   const [orderDate, setOrderDate] = useState(getTodayDate());
   const [productName, setProductName] = useState('');
   const [productCode, setProductCode] = useState('');
-  const [quantity, setQuantity] = useState(''); // Add quantity state
+  const [quantity, setQuantity] = useState('');
 
   // Function to get today's date in the format YYYY-MM-DD
   function getTodayDate() {
@@ -65,60 +65,70 @@ function PurchasePage() {
       <h1 style={styles.heading}>Purchase Page</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.fieldContainer}>
-          <label htmlFor="orderNo">Order No:</label>
-          <input
-            type="text"
-            id="orderNo"
-            value={orderNo}
-            readOnly
-            style={styles.input}
-          />
+          <label htmlFor="orderNo" style={styles.label}>Order No:</label>
+          <div style={styles.inputContainer}>
+            <input
+              type="text"
+              id="orderNo"
+              value={orderNo}
+              readOnly
+              style={styles.input}
+            />
+          </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="orderDate">Order Date:</label>
-          <input
-            type="date"
-            id="orderDate"
-            value={orderDate}
-            onChange={(e) => setOrderDate(e.target.value)}
-            style={styles.input}
-          />
+          <label htmlFor="orderDate" style={styles.label}>Order Date:</label>
+          <div style={styles.inputContainer}>
+            <input
+              type="date"
+              id="orderDate"
+              value={orderDate}
+              onChange={(e) => setOrderDate(e.target.value)}
+              style={styles.input}
+            />
+          </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="productName">Product Name:</label>
-          <select
-            id="productName"
-            value={productName}
-            onChange={handleProductChange}
-            style={styles.input}
-          >
-            <option value="">Select Product</option>
-            <option value="Coca cola">Coca cola</option>
-            <option value="Fanta">Fanta</option>
-            <option value="Sprite">Sprite</option>
-            <option value="Pepsi">Pepsi</option>
-            <option value="Mountain Dew">Mountain Dew</option>
-          </select>
+          <label htmlFor="productName" style={styles.label}>Product Name:</label>
+          <div style={styles.inputContainer}>
+            <select
+              id="productName"
+              value={productName}
+              onChange={handleProductChange}
+              style={styles.input}
+            >
+              <option value="">Select Product</option>
+              <option value="Coca cola">Coca cola</option>
+              <option value="Fanta">Fanta</option>
+              <option value="Sprite">Sprite</option>
+              <option value="Pepsi">Pepsi</option>
+              <option value="Mountain Dew">Mountain Dew</option>
+            </select>
+          </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="productCode">Product Code:</label>
-          <input
-            type="text"
-            id="productCode"
-            value={productCode}
-            readOnly
-            style={styles.input}
-          />
+          <label htmlFor="productCode" style={styles.label}>Product Code:</label>
+          <div style={styles.inputContainer}>
+            <input
+              type="text"
+              id="productCode"
+              value={productCode}
+              readOnly
+              style={styles.input}
+            />
+          </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="quantity">Quantity:</label>
-          <input
-            type="number"
-            id="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            style={styles.input}
-          />
+          <label htmlFor="quantity" style={styles.label}>Quantity:</label>
+          <div style={styles.inputContainer}>
+            <input
+              type="number"
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              style={styles.input}
+            />
+          </div>
         </div>
         <button type="submit" style={styles.button}>Purchase</button>
       </form>
@@ -153,12 +163,19 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     marginBottom: '15px',
+    width: '100%',
+  },
+  label: {
+    minWidth: '120px',
+    marginRight: '10px',
+  },
+  inputContainer: {
+    flex: '1',
   },
   input: {
-    marginLeft: '10px',
     padding: '8px',
     fontSize: '16px',
-    width: '250px',
+    width: '100%',
     backgroundColor: 'white',
     border: '1px solid #ccc',
     borderRadius: '5px',
