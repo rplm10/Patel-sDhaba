@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import logo from './Logo.jpg'; // Import your logo file
 
-function PurchasePageDelta() {
-  const [orderNo, setOrderNo] = useState('001');
-  const [orderDate, setOrderDate] = useState(getTodayDate());
+function SellPageAlpha() {
+  const [CustomerId, setCustomerId] = useState('');
+  const [SellDate, setSellDate] = useState(getTodayDate());
   const [productName, setProductName] = useState('');
   const [productCode, setProductCode] = useState('');
+  const [price, setPrice] = useState('')
   const [quantity, setQuantity] = useState('');
+  const [total, setTotal] = useState('')
 
   // Function to get today's date in the format YYYY-MM-DD
   function getTodayDate() {
@@ -17,73 +19,103 @@ function PurchasePageDelta() {
     return `${year}-${month}-${day}`;
   }
 
+  function calculateTotal() 
+  {
+    const totalPrice = quantity * price;
+    setTotal(totalPrice);    
+  }
+
+  const handleQuantityChange = (e) => 
+  {    
+    const newQuantity = Number(e.target.value);
+    setQuantity(newQuantity);
+    const totalPrice = newQuantity * price;
+    
+    calculateTotal(newQuantity); // Calculate total when quantity changes
+    setTotal(totalPrice);
+  };
+  
+
   // Function to handle product selection from dropdown
   const handleProductChange = (e) => {
     const selectedProduct = e.target.value;
     setProductName(selectedProduct);
+
     // Logic to generate product code based on selected product
     switch (selectedProduct) {
       case 'Coca cola':
         setProductCode('CC001');
+        setPrice(2300);
         break;
       case 'Fanta':
         setProductCode('FT001');
+        setPrice(2300);
         break;
       case 'Sprite':
         setProductCode('SP001');
+        setPrice(2300);
         break;
       case 'Pepsi':
         setProductCode('PS001');
+        setPrice(3100);
         break;
       case 'Mountain Dew':
         setProductCode('MD001');
+        setPrice(3100);
         break;
       default:
         setProductCode('');
+        setPrice(0);
     }
+    calculateTotal();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logic to handle submission
-    console.log('Order No:', orderNo);
-    console.log('Order Date:', orderDate);
+    console.log('Customer ID: ', CustomerId);
+    console.log('Sell Date:', SellDate);
     console.log('Product Name:', productName);
     console.log('Product Code:', productCode);
+    console.log('Price:',price)
     console.log('Quantity:', quantity); // Log quantity
+    console.log('Total', total);
+
     // Clear fields after submission
-    setOrderNo((prevOrderNo) => String(Number(prevOrderNo) + 1).padStart(3, '0'));
-    setOrderDate(getTodayDate());
+    setCustomerId('');
+    setSellDate(getTodayDate());
     setProductName('');
     setProductCode('');
+    setPrice(0);
     setQuantity(''); // Clear quantity
+    setTotal(0);
   };
 
   return (
     <div style={styles.container}>
       <img src={logo} alt="Logo" style={styles.logo} />
-      <h1 style={styles.heading}>Purchase from HQ</h1>
+      <h1 style={styles.heading}>Sell Page</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.fieldContainer}>
-          <label htmlFor="orderNo" style={styles.label}>Order No:</label>
+          <label htmlFor="CustomerID" style={styles.label}>Customer ID:</label>
           <div style={styles.inputContainer}>
             <input
               type="text"
-              id="orderNo"
-              value={orderNo}
-              readOnly
+              id="CustomerID"
+              value={CustomerId}
+              onChange={(e) => setCustomerId(e.target.value)}
               style={styles.input}
             />
           </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="orderDate" style={styles.label}>Order Date:</label>
+          <label htmlFor="SellDate" style={styles.label}>Sell Date:</label>
           <div style={styles.inputContainer}>
             <input
               type="date"
-              id="orderDate"
-              value={orderDate}
-              onChange={(e) => setOrderDate(e.target.value)}
+              id="SellDate"
+              value={SellDate}
+              onChange={(e) => setSellDate(e.target.value)}
               style={styles.input}
             />
           </div>
@@ -119,18 +151,44 @@ function PurchasePageDelta() {
           </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="quantity" style={styles.label}>Quantity:</label>
+          <label htmlFor="price" style={styles.label}>Price (Ksh) :</label>
+          <div style={styles.inputContainer}>
+            <input
+              type="number"
+              id="price"
+              value={price}
+              readOnly
+              style={styles.input}
+            />
+          </div>
+        </div>
+        <div style={styles.fieldContainer}>
+          <label htmlFor="quantity" style={styles.label}>Quantity (per carton):</label>
           <div style={styles.inputContainer}>
             <input
               type="number"
               id="quantity"
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={handleQuantityChange}
               style={styles.input}
             />
           </div>
         </div>
-        <button type="submit" style={styles.button}>Purchase</button>
+
+        <div style={styles.fieldContainer}>
+          <label htmlFor="Total" style={styles.label}>Total:</label>
+          <div style={styles.inputContainer}>
+            <input
+              type="number"
+              id="Total"
+              onChange={calculateTotal}
+              readOnly
+              value={total}
+              style={styles.input}
+            />
+          </div>
+        </div>
+        <button type="submit" style={styles.button}>Sell</button>
       </form>
     </div>
   );
@@ -143,7 +201,9 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: '700px',
+    marginTop:'5px',
+    fontSize:'16px',
     backgroundColor: '#f4f4f4',
   },
   logo: {
@@ -192,5 +252,4 @@ const styles = {
   },
 };
 
-export default PurchasePageDelta;
-
+export default SellPageAlpha;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '/vs code/react/Patel-sDhaba/main-project/src/images/Logo.jpg'; // Import your logo file
+import logo from './Logo.jpg'; // Import your logo file
 
 function LoginPage({ goToLanding }) {
   const [username, setUsername] = useState('');

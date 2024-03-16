@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import logo from '/vs code/react/Patel-sDhaba/main-project/src/images/Logo.jpg'; // Import your logo file
+import logo from './Logo.jpg'; // Import your logo file
 import PurchasePageAlpha from './PurchasePageAlpha'; // Import the PurchasePageAlpha component
+import SellPageAlpha from './SellpageAplha';
+import SaleReportAlpha from './SalesReportAlpha';
+import StockReportAlpha from './StockReportAlpha';
 
 function LandingPage() {
   const [currentPage, setCurrentPage] = useState(null); // Initially no page is shown
@@ -14,11 +17,11 @@ function LandingPage() {
       case 'purchaseAlpha': // Render PurchasePageAlpha when currentPage is 'purchaseAlpha'
         return <PurchasePageAlpha />;
       case 'sell':
-        return <div>Sell content</div>;
+        return <SellPageAlpha/>;
       case 'salesReport':
-        return <div>Sales Report content</div>;
+        return <SaleReportAlpha/>;
       case 'stockReport':
-        return <div>Stock Report content</div>;
+        return <StockReportAlpha/>;
       default:
         return (
           <div style={styles.defaultContent}>

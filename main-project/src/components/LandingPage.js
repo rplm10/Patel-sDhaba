@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import logo from '/vs code/react/Patel-sDhaba/main-project/src/images/Logo.jpg'; // Import your logo file
+import logo from './Logo.jpg'; // Import your logo file
 import PurchasePage from './PurchasePage'; // Import the PurchasePage component
+import SellPage from './SellHQpage';
+import SaleReport from './SalesReportHQ';
+import StockReport from './StockReportHQ';
+
 
 function LandingPage() {
   const [currentPage, setCurrentPage] = useState(null); // Initially no page is shown
@@ -11,18 +15,18 @@ function LandingPage() {
 
   const renderContent = () => {
     switch (currentPage) {
+      case 'purchase':
+        return <PurchasePage />;
+      case 'sell':
+        return <SellPage/>;
+      case 'hqSalesReport':
+        return <SaleReport/>;
+      case 'hqStockReport':
+        return <StockReport/>;
       case 'b1Report':
         return <div>B1 Report content</div>;
       case 'b2Report':
         return <div>B2 Report content</div>;
-      case 'purchase':
-        return <PurchasePage />;
-      case 'sell':
-        return <div>Sell content</div>;
-      case 'hqSalesReport':
-        return <div>HQ Sales Report content</div>;
-      case 'hqStockReport':
-        return <div>HQ Stock Report content</div>;
       case 'combinedReport':
         return <div>Combined Report content</div>;
       default:
