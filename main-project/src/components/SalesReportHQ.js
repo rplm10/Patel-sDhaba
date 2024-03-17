@@ -49,7 +49,7 @@ const SalesReportHQ = () => {
     <div className="sale-report-container">
         
       <img src={logo} className='logo' alt="Logo"/>
-      <h3> Sales Report Delta</h3>
+      <h3> Sales Report HQ</h3>
       
       <div className="options">
         <div className="option">

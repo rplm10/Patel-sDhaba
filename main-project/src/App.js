@@ -11,7 +11,7 @@ import PurchasePageDelta from './components/PurchasePageDelta';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
-  const [branch] = useState('hq'); // TO RUN THE PAGES CHANGE TO 'hq','alpha' or 'delta//
+  const [branch] = useState('delta'); // TO RUN THE PAGES CHANGE TO 'hq','alpha' or 'delta//
 
   const renderPage = () => {
     switch (currentPage) {

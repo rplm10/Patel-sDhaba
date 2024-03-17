@@ -4,6 +4,9 @@ import PurchasePage from './PurchasePage'; // Import the PurchasePage component
 import SellPage from './SellHQpage';
 import SaleReport from './SalesReportHQ';
 import StockReport from './StockReportHQ';
+import HqReportAlpha from './HqReportAlpha';
+import HqReportDelta from './HqReportDelta';
+import CombineReport from './CombineReport';
 
 
 function LandingPage() {
@@ -24,11 +27,11 @@ function LandingPage() {
       case 'hqStockReport':
         return <StockReport/>;
       case 'b1Report':
-        return <div>B1 Report content</div>;
+        return <HqReportAlpha />
       case 'b2Report':
-        return <div>B2 Report content</div>;
+        return <HqReportDelta />
       case 'combinedReport':
-        return <div>Combined Report content</div>;
+        return <CombineReport />
       default:
         return (
           <div style={styles.defaultContent}>
@@ -51,8 +54,8 @@ function LandingPage() {
       </div>
       <div style={styles.mainContent}>
         <div style={styles.leftColumn}>
-          <button onClick={() => handleButtonClick('b1Report')} style={{ ...styles.button, marginTop: '30px' }}>B1 Report</button>
-          <button onClick={() => handleButtonClick('b2Report')} style={styles.button}>B2 Report</button>
+          <button onClick={() => handleButtonClick('b1Report')} style={{ ...styles.button, marginTop: '30px' }}>Alpha Report</button>
+          <button onClick={() => handleButtonClick('b2Report')} style={styles.button}>Delta Report</button>
           <button onClick={() => handleButtonClick('purchase')} style={{ ...styles.button, marginTop: '30px' }}>Purchase</button>
           <button onClick={() => handleButtonClick('sell')} style={styles.button}>Sell</button>
           <button onClick={() => handleButtonClick('hqSalesReport')} style={styles.button}>HQ Sales Report</button>
