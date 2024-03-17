@@ -128,6 +128,8 @@ const styles = {
   mainContent: {
     display: 'flex',
     alignItems: 'flex-start', // Align items at the start of the flex container
+    minHeight: 'calc(100vh - 100px)', // Adjusted min-height to ensure all content fits within the viewport
+    overflowY: 'auto',
     width: '100%',
     marginTop: '80px', // Adjust margin top to account for fixed header
   },
@@ -145,7 +147,7 @@ const styles = {
   button: {
     display: 'block',
     marginBottom: '20px', // Add margin bottom between buttons
-    padding: '15px 20px', // Adjust padding to make buttons bigger
+    padding: '10px 30px', // Adjust padding to make buttons bigger
     width: '100%',
     textAlign: 'center',
     color: 'black', // Change font color to black
@@ -158,9 +160,9 @@ const styles = {
   },
   line: {
     width: '1px',
-    height: '100%',
+    height: '130%',
     backgroundColor: 'white', // Change line color to white
-    margin: '0 20px', // Adjust margin to position the line
+    margin: '0 10px', // Adjust margin to position the line
   },
 };
 

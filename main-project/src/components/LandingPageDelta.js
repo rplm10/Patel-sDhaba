@@ -120,6 +120,8 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start', // Align items at the start of the flex container
     width: '100%',
+    minHeight: 'calc(100vh - 100px)', // Adjusted min-height to ensure all content fits within the viewport
+    overflowY: 'auto',
     marginTop: '80px', // Adjust margin top to account for fixed header
   },
   leftColumn: {
@@ -149,7 +151,7 @@ const styles = {
   },
   line: {
     width: '1px',
-    height: '100%',
+    height: '130%',
     backgroundColor: 'white', // Change line color to white
     margin: '0 20px', // Adjust margin to position the line
   },
