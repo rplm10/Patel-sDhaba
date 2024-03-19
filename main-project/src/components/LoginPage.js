@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import logo from './Logo.jpg'; // Import your logo file
 
-function LoginPage({ goToLanding }) {
+function LoginPage({ handleSubmit }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic
-    console.log('Username:', username, 'Password:', password);
-    // After successful login, navigate to the landing page
-    goToLanding();
+   // props.goToLanding();
+   // Call handleSubmit prop with username and password
+   handleSubmit(username, password);
   };
 
   return (
     <div style={styles.container}>
       <img src={logo} alt="Logo" style={styles.logo} /> {/* Display your logo */}
       <h1 style={styles.title}>Login Page</h1>
-      <form onSubmit={handleSubmit} style={styles.form}>
+      <form onSubmit={handleFormSubmit} style={styles.form}>
         <input
           type="text"
           placeholder="Username"
