@@ -3,19 +3,43 @@ import logo from './Logo.jpg'; // Import your logo file
 
 function PurchasePage() {
   const [orderNo, setOrderNo] = useState('001');
-  const [orderDate, setOrderDate] = useState(getTodayDate());
+  const [companyName, setCompanyName] = useState('');
+  const [companyCode, setCompanyCode] = useState('');
   const [productName, setProductName] = useState('');
   const [productCode, setProductCode] = useState('');
-  const [quantity, setQuantity] = useState('');
 
-  // Function to get today's date in the format YYYY-MM-DD
-  function getTodayDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
+  // Function to handle company selection from dropdown
+  const handleCompanyChange = (e) => {
+    const selectedCompany = e.target.value;
+    setCompanyName(selectedCompany);
+    // Logic to generate company code based on selected company
+    switch (selectedCompany) {
+      case 'Coca Cola':
+        setCompanyCode('CC');
+        break;
+      case 'PepsiCo':
+        setCompanyCode('PP');
+        break;
+      case 'Red Bull':
+        setCompanyCode('RB');
+        break;
+      case 'Monster Beverage Corporation':
+        setCompanyCode('MBC');
+        break;
+      case 'National Beverage Corp. (FIZZ)':
+        setCompanyCode('NBFC');
+        break;
+      case 'Cott Corporation':
+        setCompanyCode('CCorp');
+        break;
+      case 'Jones Soda Co.':
+        setCompanyCode('JSC');
+        break;
+      // Add more cases for other companies if needed
+      default:
+        setCompanyCode('');
+    }
+  };
 
   // Function to handle product selection from dropdown
   const handleProductChange = (e) => {
@@ -47,16 +71,16 @@ function PurchasePage() {
     e.preventDefault();
     // Logic to handle submission
     console.log('Order No:', orderNo);
-    console.log('Order Date:', orderDate);
+    console.log('Company Name:', companyName);
+    console.log('Company Code:', companyCode);
     console.log('Product Name:', productName);
     console.log('Product Code:', productCode);
-    console.log('Quantity:', quantity); // Log quantity
     // Clear fields after submission
     setOrderNo((prevOrderNo) => String(Number(prevOrderNo) + 1).padStart(3, '0'));
-    setOrderDate(getTodayDate());
+    setCompanyName('');
+    setCompanyCode('');
     setProductName('');
     setProductCode('');
-    setQuantity(''); // Clear quantity
   };
 
   return (
@@ -77,13 +101,33 @@ function PurchasePage() {
           </div>
         </div>
         <div style={styles.fieldContainer}>
-          <label htmlFor="orderDate" style={styles.label}>Order Date:</label>
+          <label htmlFor="companyName" style={styles.label}>Company Name:</label>
+          <div style={styles.inputContainer}>
+            <select
+              id="companyName"
+              value={companyName}
+              onChange={handleCompanyChange}
+              style={styles.input}
+            >
+              <option value="">Select Company</option>
+              <option value="Coca Cola">Coca Cola</option>
+              <option value="PepsiCo">PepsiCo</option>
+              <option value="Red Bull">Red Bull</option>
+              <option value="Monster Beverage Corporation">Monster Beverage Corporation</option>
+              <option value="National Beverage Corp. (FIZZ)">National Beverage Corp. (FIZZ)</option>
+              <option value="Cott Corporation">Cott Corporation</option>
+              <option value="Jones Soda Co.">Jones Soda Co.</option>
+            </select>
+          </div>
+        </div>
+        <div style={styles.fieldContainer}>
+          <label htmlFor="companyCode" style={styles.label}>Company Code:</label>
           <div style={styles.inputContainer}>
             <input
-              type="date"
-              id="orderDate"
-              value={orderDate}
-              onChange={(e) => setOrderDate(e.target.value)}
+              type="text"
+              id="companyCode"
+              value={companyCode}
+              readOnly
               style={styles.input}
             />
           </div>
@@ -114,18 +158,6 @@ function PurchasePage() {
               id="productCode"
               value={productCode}
               readOnly
-              style={styles.input}
-            />
-          </div>
-        </div>
-        <div style={styles.fieldContainer}>
-          <label htmlFor="quantity" style={styles.label}>Quantity:</label>
-          <div style={styles.inputContainer}>
-            <input
-              type="number"
-              id="quantity"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
               style={styles.input}
             />
           </div>
